@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { TodoList } from "../components/TodoList";
 import { AddTodo } from "../components/AddTodo";
 import { Filter } from "./AddFilter";
@@ -7,6 +8,16 @@ export const TodoApp = () => {
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("all");
 
+  useEffect(() => {
+    axios.get("https://dummyjson.com/todos").then((response) => {
+      const initialTodos = response.data.todos.map((todo) => ({
+        id: todo.id,
+        task: todo.todo,
+        completed: todo.completed,
+      }));
+      setTodos(initialTodos);
+    });
+  }, []);
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos"));
     if (storedTodos) {
