@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.todo-item span {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: gray;
+}
